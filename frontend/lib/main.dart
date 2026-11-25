@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 const api = 'https://studyflow-eeci.onrender.com';
 
+
 // ───────────── Design tokens ─────────────
 const kPrimary = Color(0xFF4F46E5);
 const kViolet = Color(0xFF7C3AED);
@@ -16,6 +17,12 @@ const kGreen = Color(0xFF10B981);
 const kAmber = Color(0xFFF59E0B);
 const kRose = Color(0xFFEF4444);
 const kTeal = Color(0xFF0EA5E9);
+
+// Additional design tokens - Branch A
+const kIndigo = Color(0xFF6366F1);
+const kLightViolet = Color(0xFFEDE9FE);
+const kSoftBlue = Color(0xFFDBEAFE);
+
 
 TextStyle heading(double size, {Color color = kInk}) =>
     GoogleFonts.poppins(fontSize: size, fontWeight: FontWeight.w600, color: color);
