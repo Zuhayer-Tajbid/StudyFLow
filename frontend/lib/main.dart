@@ -65,7 +65,7 @@ class StudyFlowApp extends StatelessWidget {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
-        indicatorColor: kPrimary.withOpacity(0.12),
+        indicatorColor: kPrimary.withValues(alpha: .12),
       ),
     ),
     home: const PlannerHome(),
@@ -303,7 +303,7 @@ Future<void> remove(String path) async {
 
   Widget _chip(IconData icon, String text, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
-    decoration: BoxDecoration(color: color.withOpacity(0.10), borderRadius: BorderRadius.circular(6)),
+    decoration: BoxDecoration(color: color.withValues(alpha: 0.10), borderRadius: BorderRadius.circular(6)),
     child: Row(mainAxisSize: MainAxisSize.min, children: [
       Icon(icon, size: 13, color: color), const SizedBox(width: 5),
       Text(text, style: GoogleFonts.inter(fontSize: 12, color: color, fontWeight: FontWeight.w600)),
@@ -316,7 +316,7 @@ Future<void> remove(String path) async {
     decoration: BoxDecoration(
       color: Colors.white, borderRadius: BorderRadius.circular(14),
       border: Border.all(color: kBorder),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 12, offset: const Offset(0, 4))],
+      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: .03), blurRadius: 12, offset: const Offset(0, 4))],
     ),
     child: child,
   );
@@ -338,7 +338,7 @@ Future<void> remove(String path) async {
     child: Center(child: Column(mainAxisSize: MainAxisSize.min, children: [
       Container(
         padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(color: kPrimary.withOpacity(0.08), shape: BoxShape.circle),
+        decoration: BoxDecoration(color: kPrimary.withValues(alpha: .08), shape: BoxShape.circle),
         child: Icon(icon, size: 36, color: kPrimary),
       ),
       const SizedBox(height: 14),
@@ -348,47 +348,146 @@ Future<void> remove(String path) async {
 
   // ───────────── Navbar ─────────────
 
-  Widget _navbar(bool wide) => Container(
-    decoration: const BoxDecoration(color: Colors.white, border: Border(bottom: BorderSide(color: kBorder))),
+  // Widget _navbar(bool wide) => Container(
+  //   decoration: const BoxDecoration(color: Colors.white, border: Border(bottom: BorderSide(color: kBorder))),
+  //   child: SafeArea(
+  //     bottom: false,
+  //     child: _container(SizedBox(height: 64, child: Row(children: [
+  //       Container(
+  //         padding: const EdgeInsets.all(8),
+  //         decoration: BoxDecoration(
+  //           gradient: const LinearGradient(colors: [kPrimary, kViolet]),
+  //           borderRadius: BorderRadius.circular(10),
+  //         ),
+  //         child: const Icon(Icons.school_rounded, color: Colors.white, size: 20),
+  //       ),
+  //       const SizedBox(width: 10),
+  //       Text('StudyFlow', style: heading(20)),
+  //       const Spacer(),
+  //       if (wide) ...List.generate(4, (i) {
+  //         final on = tab == i;
+  //         return Padding(
+  //           padding: const EdgeInsets.only(left: 4),
+  //           child: InkWell(
+  //             borderRadius: BorderRadius.circular(8),
+  //             onTap: () => setState(() => tab = i),
+  //             child: Container(
+  //               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+  //               decoration: BoxDecoration(color: on ? kPrimary.withValues(alpha: .10) : Colors.transparent, borderRadius: BorderRadius.circular(8)),
+  //               child: Row(children: [
+  //                 Icon(on ? _tabIconsOn[i] : _tabIcons[i], size: 18, color: on ? kPrimary : kMuted),
+  //                 const SizedBox(width: 7),
+  //                 Text(_tabLabels[i], style: GoogleFonts.inter(fontSize: 14, fontWeight: on ? FontWeight.w600 : FontWeight.w500, color: on ? kPrimary : kMuted)),
+  //               ]),
+  //             ),
+  //           ),
+  //         );
+  //       }),
+  //       const SizedBox(width: 8),
+  //       IconButton(onPressed: refresh, icon: const Icon(Icons.refresh_rounded), color: kMuted, tooltip: 'Refresh'),
+  //     ])), wide),
+  //   ),
+  // );
+Widget _navbar(bool wide) => Container(
+    decoration: const BoxDecoration(
+      color: Colors.white,
+      border: Border(bottom: BorderSide(color: kBorder)),
+    ),
     child: SafeArea(
       bottom: false,
-      child: _container(SizedBox(height: 64, child: Row(children: [
-        Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(colors: [kPrimary, kViolet]),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: const Icon(Icons.school_rounded, color: Colors.white, size: 20),
-        ),
-        const SizedBox(width: 10),
-        Text('StudyFlow', style: heading(20)),
-        const Spacer(),
-        if (wide) ...List.generate(4, (i) {
-          final on = tab == i;
-          return Padding(
-            padding: const EdgeInsets.only(left: 4),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(8),
-              onTap: () => setState(() => tab = i),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
-                decoration: BoxDecoration(color: on ? kPrimary.withOpacity(0.10) : Colors.transparent, borderRadius: BorderRadius.circular(8)),
-                child: Row(children: [
-                  Icon(on ? _tabIconsOn[i] : _tabIcons[i], size: 18, color: on ? kPrimary : kMuted),
-                  const SizedBox(width: 7),
-                  Text(_tabLabels[i], style: GoogleFonts.inter(fontSize: 14, fontWeight: on ? FontWeight.w600 : FontWeight.w500, color: on ? kPrimary : kMuted)),
-                ]),
+      child: _container(
+        SizedBox(
+          height: 64,
+          child: Row(
+            children: [
+              // ── Logo ──────────────────────────────────────────
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(colors: [kPrimary, kViolet]),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Icon(Icons.school_rounded,
+                    color: Colors.white, size: 20),
               ),
-            ),
-          );
-        }),
-        const SizedBox(width: 8),
-        IconButton(onPressed: refresh, icon: const Icon(Icons.refresh_rounded), color: kMuted, tooltip: 'Refresh'),
-      ])), wide),
+              const SizedBox(width: 10),
+              Text('StudyFlow', style: heading(20)),
+
+              // ── Tabs (wide layout) ────────────────────────────
+              if (wide) ...[
+                const SizedBox(width: 16),
+                // FIX: Wrap tabs in Expanded + horizontal scroll so they
+                // can never overflow, no matter how narrow the window is.
+                Expanded(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    reverse: true, // keep tabs pinned to the right
+                    child: Row(
+                      children: List.generate(4, (i) {
+                        final on = tab == i;
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 4),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(8),
+                            onTap: () => setState(() => tab = i),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14, vertical: 9),
+                              decoration: BoxDecoration(
+                                color: on
+                                    ? kPrimary.withValues(alpha: .10)
+                                    : Colors.transparent,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                // FIX: must be min, otherwise the inner
+                                // Row tries to fill and overflows again.
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    on ? _tabIconsOn[i] : _tabIcons[i],
+                                    size: 18,
+                                    color: on ? kPrimary : kMuted,
+                                  ),
+                                  const SizedBox(width: 7),
+                                  Text(
+                                    _tabLabels[i],
+                                    style: GoogleFonts.inter(
+                                      fontSize: 14,
+                                      fontWeight: on
+                                          ? FontWeight.w600
+                                          : FontWeight.w500,
+                                      color: on ? kPrimary : kMuted,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ] else
+                // ── Spacer only needed in compact layout ──────
+                const Spacer(),
+
+              // ── Refresh button ────────────────────────────────
+              const SizedBox(width: 8),
+              IconButton(
+                onPressed: refresh,
+                icon: const Icon(Icons.refresh_rounded),
+                color: kMuted,
+                tooltip: 'Refresh',
+              ),
+            ],
+          ),
+        ),
+        wide,
+      ),
     ),
   );
-
   // ───────────── Hero + stats ─────────────
 
   Widget _hero(bool wide) {
@@ -396,25 +495,25 @@ Future<void> remove(String path) async {
     final text = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-        decoration: BoxDecoration(color: Colors.white.withOpacity(0.18), borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(color: Colors.white.withValues(alpha: .18), borderRadius: BorderRadius.circular(20)),
         child: Text('Your study planner', style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
       ),
       const SizedBox(height: 14),
       Text('Stay organized.\nStudy smarter.', style: heading(wide ? 34 : 26, color: Colors.white).copyWith(height: 1.2)),
       const SizedBox(height: 10),
       Text('Track assignments, courses and study sessions in one place.',
-        style: GoogleFonts.inter(color: Colors.white.withOpacity(0.85), fontSize: wide ? 15 : 13.5)),
+        style: GoogleFonts.inter(color: Colors.white.withValues(alpha: .85), fontSize: wide ? 15 : 13.5)),
     ]);
     final ring = SizedBox(
       width: 120, height: 120,
       child: Stack(alignment: Alignment.center, children: [
         SizedBox(width: 120, height: 120, child: CircularProgressIndicator(
           value: progress / 100, strokeWidth: 10, strokeCap: StrokeCap.round,
-          backgroundColor: Colors.white.withOpacity(0.2), valueColor: const AlwaysStoppedAnimation(Colors.white),
+          backgroundColor: Colors.white.withValues(alpha: .2), valueColor: const AlwaysStoppedAnimation(Colors.white),
         )),
         Column(mainAxisSize: MainAxisSize.min, children: [
           Text('${dashboard['progress_percent'] ?? 0}%', style: heading(26, color: Colors.white)),
-          Text('complete', style: GoogleFonts.inter(color: Colors.white.withOpacity(0.85), fontSize: 12)),
+          Text('complete', style: GoogleFonts.inter(color: Colors.white.withValues(alpha: .85), fontSize: 12)),
         ]),
       ]),
     );
@@ -424,7 +523,7 @@ Future<void> remove(String path) async {
       decoration: BoxDecoration(
         gradient: const LinearGradient(colors: [kPrimary, kViolet], begin: Alignment.topLeft, end: Alignment.bottomRight),
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [BoxShadow(color: kPrimary.withOpacity(0.25), blurRadius: 24, offset: const Offset(0, 10))],
+        boxShadow: [BoxShadow(color: kPrimary.withValues(alpha: .25), blurRadius: 24, offset: const Offset(0, 10))],
       ),
       child: wide
         ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Expanded(child: text), const SizedBox(width: 24), ring])
@@ -436,11 +535,11 @@ Future<void> remove(String path) async {
     padding: EdgeInsets.all(wide ? 20 : 12),
     decoration: BoxDecoration(
       color: Colors.white, borderRadius: BorderRadius.circular(14), border: Border.all(color: kBorder),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 12, offset: const Offset(0, 4))],
+      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: .03), blurRadius: 12, offset: const Offset(0, 4))],
     ),
     child: wide
       ? Row(children: [
-          Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(12)), child: Icon(icon, color: color, size: 24)),
+          Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(12)), child: Icon(icon, color: color, size: 24)),
           const SizedBox(width: 16),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text('$value', style: heading(26)),
@@ -448,7 +547,7 @@ Future<void> remove(String path) async {
           ]),
         ])
       : Column(children: [
-          Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: color.withOpacity(0.12), shape: BoxShape.circle), child: Icon(icon, color: color, size: 18)),
+          Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: color.withValues(alpha: 0.12), shape: BoxShape.circle), child: Icon(icon, color: color, size: 18)),
           const SizedBox(height: 8),
           Text('$value', style: heading(20)),
           Text(label, style: GoogleFonts.inter(fontSize: 12, color: kMuted)),
@@ -467,7 +566,7 @@ Future<void> remove(String path) async {
         margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(12), border: Border.all(color: kBorder),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 8, offset: const Offset(0, 2))],
+          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: .02), blurRadius: 8, offset: const Offset(0, 2))],
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
@@ -533,10 +632,10 @@ trailing: Row(
     padding: const EdgeInsets.symmetric(horizontal: 16),
     decoration: BoxDecoration(
       color: Colors.white, borderRadius: BorderRadius.circular(14), border: Border.all(color: kBorder),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 12, offset: const Offset(0, 4))],
+      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: .03), blurRadius: 12, offset: const Offset(0, 4))],
     ),
     child: Row(children: [
-      Container(padding: const EdgeInsets.all(11), decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(12)), child: Icon(icon, color: color)),
+      Container(padding: const EdgeInsets.all(11), decoration: BoxDecoration(color: color.withValues(alpha: .12), borderRadius: BorderRadius.circular(12)), child: Icon(icon, color: color)),
       const SizedBox(width: 14),
       Expanded(child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: GoogleFonts.inter(fontSize: 15.5, fontWeight: FontWeight.w600, color: kInk)),
