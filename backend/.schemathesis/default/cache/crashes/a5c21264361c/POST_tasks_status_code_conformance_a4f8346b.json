@@ -1,0 +1,95 @@
+{
+  "operation": "POST /tasks",
+  "method": "POST",
+  "path_template": "/tasks",
+  "fingerprint": "a4f8346b",
+  "case_id": "hq8mOV",
+  "code_sample": "curl -X POST -H 'Content-Type: application/json' -d '\ufffd' http://127.0.0.1:8000/tasks",
+  "sequence": [
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/tasks",
+      "url_template": "http://127.0.0.1:8000/tasks",
+      "headers": {
+        "User-Agent": "schemathesis/4.34.2",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "X-Schemathesis-TestCaseId": "hq8mOV",
+        "Content-Type": "application/json",
+        "Content-Length": "1"
+      },
+      "response": {
+        "status_code": 400,
+        "headers": {
+          "date": "Wed, 25 Nov 2026 17:42:59 GMT",
+          "server": "uvicorn",
+          "content-length": "48",
+          "content-type": "application/json",
+          "vary": "Origin"
+        },
+        "body": "{\"detail\":\"There was an error parsing the body\"}"
+      },
+      "link": null,
+      "checks": [
+        {
+          "name": "status_code_conformance",
+          "status": "failure",
+          "message": "Undocumented status code\n\nReceived: 400\nDocumented: 200, 422"
+        }
+      ],
+      "meta": {
+        "generation": {
+          "time": 0.0020342000061646104,
+          "mode": "negative"
+        },
+        "components": {
+          "BODY": "negative"
+        },
+        "phase": {
+          "name": "fuzzing",
+          "data": {
+            "type": "FuzzingPhaseData",
+            "description": "Invalid syntax: random bytes",
+            "location": null,
+            "parameter": null,
+            "parameter_location": "BODY",
+            "mutations": [
+              {
+                "path": [],
+                "parameter_location": "body",
+                "schema_pointer": "",
+                "channel": "schema",
+                "operator": "syntax_fuzzing",
+                "keywords": [],
+                "parameter": null,
+                "original_value": null,
+                "new_value": null
+              }
+            ]
+          }
+        },
+        "pool_draws": [],
+        "pool_misses": [],
+        "semantic_draws": [],
+        "dictionary_draws": [],
+        "constants_draws": [],
+        "raw_containers": {}
+      },
+      "path": "/tasks",
+      "path_parameters": {},
+      "query": {},
+      "case_headers": {},
+      "cookies": {},
+      "case_body": {
+        "encoding": "base64",
+        "value": "gA=="
+      },
+      "media_type": "application/json",
+      "parent_index": null,
+      "auth_identity": null,
+      "operation": "POST /tasks"
+    }
+  ],
+  "aliases": []
+}

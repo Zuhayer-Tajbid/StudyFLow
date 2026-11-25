@@ -1,0 +1,87 @@
+{
+  "operation": "DELETE /courses/{course_id}",
+  "method": "DELETE",
+  "path_template": "/courses/{course_id}",
+  "fingerprint": "1876320f",
+  "case_id": "bzATWq",
+  "code_sample": "curl -X DELETE http://127.0.0.1:8000/courses/9223372036854775808",
+  "sequence": [
+    {
+      "method": "DELETE",
+      "url": "http://127.0.0.1:8000/courses/9223372036854775808",
+      "url_template": "http://127.0.0.1:8000/courses/{course_id}",
+      "headers": {
+        "User-Agent": "schemathesis/4.34.2",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "X-Schemathesis-TestCaseId": "bzATWq",
+        "Content-Length": "0"
+      },
+      "response": {
+        "status_code": 404,
+        "headers": {
+          "date": "Wed, 25 Nov 2026 17:42:54 GMT",
+          "server": "uvicorn",
+          "content-length": "29",
+          "content-type": "application/json",
+          "vary": "Origin"
+        },
+        "body": "{\"detail\":\"Course not found\"}"
+      },
+      "link": null,
+      "checks": [
+        {
+          "name": "status_code_conformance",
+          "status": "failure",
+          "message": "Undocumented status code\n\nReceived: 404\nDocumented: 200, 422"
+        }
+      ],
+      "meta": {
+        "generation": {
+          "time": 4.0399987483397126e-05,
+          "mode": "positive"
+        },
+        "components": {
+          "PATH": "positive"
+        },
+        "phase": {
+          "name": "coverage",
+          "data": {
+            "type": "CoveragePhaseData",
+            "description": "Number beyond common integer widths",
+            "location": null,
+            "parameter": "course_id",
+            "parameter_location": "PATH",
+            "scenario": "large_number"
+          }
+        },
+        "pool_draws": [],
+        "pool_misses": [],
+        "semantic_draws": [],
+        "dictionary_draws": [],
+        "constants_draws": [],
+        "raw_containers": {
+          "PATH": {
+            "course_id": 9223372036854775808
+          }
+        }
+      },
+      "path": "/courses/{course_id}",
+      "path_parameters": {
+        "course_id": "9223372036854775808"
+      },
+      "query": {},
+      "case_headers": {},
+      "cookies": {},
+      "case_body": {
+        "encoding": "none"
+      },
+      "media_type": null,
+      "parent_index": null,
+      "auth_identity": null,
+      "operation": "DELETE /courses/{course_id}"
+    }
+  ],
+  "aliases": []
+}

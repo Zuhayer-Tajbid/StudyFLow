@@ -1,0 +1,108 @@
+{
+  "operation": "PUT /tasks/{task_id}",
+  "method": "PUT",
+  "path_template": "/tasks/{task_id}",
+  "fingerprint": "856f4e40",
+  "case_id": "YsOksw",
+  "code_sample": "curl -X PUT -H 'Content-Type: application/json' -d '{\"title\": \"0\", \"course\": null, \"due_date\": null, \"priority\": null, \"completed\": null, \"kind\": null}' http://127.0.0.1:8000/tasks/9",
+  "sequence": [
+    {
+      "method": "PUT",
+      "url": "http://127.0.0.1:8000/tasks/9",
+      "url_template": "http://127.0.0.1:8000/tasks/{task_id}",
+      "headers": {
+        "User-Agent": "schemathesis/4.34.2",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "X-Schemathesis-TestCaseId": "YsOksw",
+        "Content-Type": "application/json",
+        "Content-Length": "99"
+      },
+      "response": {
+        "status_code": 500,
+        "headers": {
+          "date": "Wed, 25 Nov 2026 17:42:54 GMT",
+          "server": "uvicorn",
+          "content-length": "21",
+          "content-type": "text/plain; charset=utf-8"
+        },
+        "body": "Internal Server Error"
+      },
+      "link": null,
+      "checks": [
+        {
+          "name": "status_code_conformance",
+          "status": "failure",
+          "message": "Undocumented status code\n\nReceived: 500\nDocumented: 200, 422"
+        }
+      ],
+      "meta": {
+        "generation": {
+          "time": 0.006427100015571341,
+          "mode": "positive"
+        },
+        "components": {
+          "PATH": "positive",
+          "BODY": "positive"
+        },
+        "phase": {
+          "name": "coverage",
+          "data": {
+            "type": "CoveragePhaseData",
+            "description": "Valid object",
+            "location": null,
+            "parameter": "application/json",
+            "parameter_location": "BODY",
+            "scenario": "valid_object"
+          }
+        },
+        "pool_draws": [
+          {
+            "location": "path",
+            "parameter_name": "task_id",
+            "resource_name": "Task",
+            "resource_field": "id",
+            "source_operation": "POST /tasks",
+            "source_status": 200,
+            "source_identity": null,
+            "source_input": false,
+            "source_query": null
+          }
+        ],
+        "pool_misses": [],
+        "semantic_draws": [],
+        "dictionary_draws": [],
+        "constants_draws": [],
+        "raw_containers": {
+          "PATH": {
+            "task_id": 9
+          }
+        }
+      },
+      "path": "/tasks/{task_id}",
+      "path_parameters": {
+        "task_id": "9"
+      },
+      "query": {},
+      "case_headers": {},
+      "cookies": {},
+      "case_body": {
+        "encoding": "json",
+        "value": {
+          "title": "0",
+          "course": null,
+          "due_date": null,
+          "priority": null,
+          "completed": null,
+          "kind": null
+        }
+      },
+      "media_type": "application/json",
+      "parent_index": null,
+      "auth_identity": null,
+      "operation": "PUT /tasks/{task_id}"
+    }
+  ],
+  "aliases": []
+}

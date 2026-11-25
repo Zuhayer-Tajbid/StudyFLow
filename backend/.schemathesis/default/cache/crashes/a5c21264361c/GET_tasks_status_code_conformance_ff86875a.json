@@ -1,0 +1,77 @@
+{
+  "operation": "GET /tasks",
+  "method": "GET",
+  "path_template": "/tasks",
+  "fingerprint": "ff86875a",
+  "case_id": "mHBI4a",
+  "code_sample": "curl -X GET http://127.0.0.1:8000/tasks",
+  "sequence": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/tasks",
+      "url_template": "http://127.0.0.1:8000/tasks",
+      "headers": {
+        "User-Agent": "schemathesis/4.34.2",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "X-Schemathesis-TestCaseId": "mHBI4a"
+      },
+      "response": {
+        "status_code": 500,
+        "headers": {
+          "date": "Wed, 25 Nov 2026 17:42:59 GMT",
+          "server": "uvicorn",
+          "content-length": "21",
+          "content-type": "text/plain; charset=utf-8"
+        },
+        "body": "Internal Server Error"
+      },
+      "link": null,
+      "checks": [
+        {
+          "name": "status_code_conformance",
+          "status": "failure",
+          "message": "Undocumented status code\n\nReceived: 500\nDocumented: 200"
+        }
+      ],
+      "meta": {
+        "generation": {
+          "time": 0.00021879997802898288,
+          "mode": "positive"
+        },
+        "components": {},
+        "phase": {
+          "name": "fuzzing",
+          "data": {
+            "type": "FuzzingPhaseData",
+            "description": "Positive test case",
+            "location": null,
+            "parameter": null,
+            "parameter_location": null,
+            "mutations": []
+          }
+        },
+        "pool_draws": [],
+        "pool_misses": [],
+        "semantic_draws": [],
+        "dictionary_draws": [],
+        "constants_draws": [],
+        "raw_containers": {}
+      },
+      "path": "/tasks",
+      "path_parameters": {},
+      "query": {},
+      "case_headers": {},
+      "cookies": {},
+      "case_body": {
+        "encoding": "none"
+      },
+      "media_type": null,
+      "parent_index": null,
+      "auth_identity": null,
+      "operation": "GET /tasks"
+    }
+  ],
+  "aliases": []
+}

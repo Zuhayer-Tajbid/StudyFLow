@@ -1,0 +1,373 @@
+{
+  "operation": "PUT /tasks/{task_id}",
+  "method": "PUT",
+  "path_template": "/tasks/{task_id}",
+  "fingerprint": "c3f78598",
+  "case_id": "EAsGor",
+  "code_sample": "curl -X POST -H 'Content-Type: application/json' -d '{\"\": {\"x\\u0018c\\ud9c4\\udfd3\\u0015\\u0081\": \"\\u00f2m\\ud807\\udd3e\\udb2c\\uddd3\", \"\\u00ff\\u00de\\u001f\\u0097\\uda4b\\uddc4h\\ud95c\\ude6e\\ud939\\udceb\\u00da\\u008e.\\u0094\\ud80e\\udc58p\\u0095sT\\u00cf\\u009f\\ud9d3\\uddf0x-\\u00ab\\u0005\\ud9f1\\udf74\\u00c0\\u00d6\": 36893488147419103232, \"\\u00b4\\u00e6\": -334}, \"\\u6c1f\\u0085\\udb71\\uddd7\\udbe8\\udc80s\\udbd6\\udf0d\\udb02\\udf9b=\\uda94\\udc4f\": true, \"|\\u00b6\\u00a0o\": [[]], \"\\udaf1\\udc1a\": {\"n\\u0015B\": true, \"U\\u00e0\\u0011\\u0095\": [-253726254161063.0, false, -7958192], \"\\u009a\\u00cf\\ud9de\\udcaa\\u00a0\\u00c5\\u3227\": {}}, \"\\u00b8\": \"\\u00e1\\u00bca\\ud805\\udc18@\\u00e2\\u008e\\udb16\\udd13\\u0094\\u00ef\\udb21\\uddb0\\ud85f\\udd6e3]<\\udb8c\\udc5d\", \"kind\": \"exam\", \"priority\": \"Low\", \"title\": \"\\u00ed\\u0001\\ud8cd\\udee6\\ud8f2\\ude5b\", \"course\": \"Artificial Intelligence\", \"due_date\": \"2026-11-30\"}' http://127.0.0.1:8000/tasks\ncurl -X PUT http://127.0.0.1:8000/tasks/67/toggle\ncurl -X DELETE http://127.0.0.1:8000/tasks/67\ncurl -X PUT -H 'Content-Type: application/json' -d '{\"course\": \"Database Systems\", \"due_date\": \"2026-12-08\", \"title\": \"\\ud839\\ude68\\ud8d5\\uddd3\\ud833\\ude52\\u969ck\\u00aa\\u468c\\ud82a\\udf56\\u00e5\\u0017\\b\\u0096\\u000fu\\u00ba\\uda53\\udf13\\udba4\\udedd\\u00aa\", \"completed\": false, \"kind\": \"study\", \"priority\": null}' http://127.0.0.1:8000/tasks/14571513",
+  "sequence": [
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/tasks",
+      "url_template": "http://127.0.0.1:8000/tasks",
+      "headers": {
+        "User-Agent": "schemathesis/4.34.2",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "X-Schemathesis-TestCaseId": "wfaqzn",
+        "Content-Type": "application/json",
+        "Content-Length": "806"
+      },
+      "response": {
+        "status_code": 200,
+        "headers": {
+          "date": "Wed, 25 Nov 2026 17:43:06 GMT",
+          "server": "uvicorn",
+          "content-length": "144",
+          "content-type": "application/json",
+          "vary": "Origin"
+        },
+        "body": "{\"id\":67,\"title\":\"\u00ed\\u0001\ud8cd\udee6\ud8f2\ude5b\",\"course\":\"Artificial Intelligence\",\"due_date\":\"2026-11-30\",\"priority\":\"Low\",\"completed\":false,\"kind\":\"exam\"}"
+      },
+      "link": null,
+      "checks": [],
+      "meta": {
+        "generation": {
+          "time": 0.007599499978823587,
+          "mode": "positive"
+        },
+        "components": {
+          "BODY": "positive"
+        },
+        "phase": {
+          "name": "stateful",
+          "data": {
+            "type": "StatefulPhaseData",
+            "description": "Positive test case",
+            "location": null,
+            "parameter": null,
+            "parameter_location": null,
+            "mutations": []
+          }
+        },
+        "pool_draws": [],
+        "pool_misses": [],
+        "semantic_draws": [
+          {
+            "path": [
+              "course"
+            ],
+            "type_token": "string",
+            "format_token": null,
+            "pattern_hash": null,
+            "normalized_name": "course",
+            "value": "Artificial Intelligence",
+            "source_operation": "GET /tasks"
+          },
+          {
+            "path": [
+              "due_date"
+            ],
+            "type_token": "string",
+            "format_token": null,
+            "pattern_hash": null,
+            "normalized_name": "duedate",
+            "value": "2026-11-30",
+            "source_operation": "GET /tasks"
+          }
+        ],
+        "dictionary_draws": [],
+        "constants_draws": [],
+        "raw_containers": {}
+      },
+      "path": "/tasks",
+      "path_parameters": {},
+      "query": {},
+      "case_headers": {},
+      "cookies": {},
+      "case_body": {
+        "encoding": "json",
+        "value": {
+          "": {
+            "x\u0018c\ud9c4\udfd3\u0015\u0081": "\u00f2m\ud807\udd3e\udb2c\uddd3",
+            "\u00ff\u00de\u001f\u0097\uda4b\uddc4h\ud95c\ude6e\ud939\udceb\u00da\u008e.\u0094\ud80e\udc58p\u0095sT\u00cf\u009f\ud9d3\uddf0x-\u00ab\u0005\ud9f1\udf74\u00c0\u00d6": 36893488147419103232,
+            "\u00b4\u00e6": -334
+          },
+          "\u6c1f\u0085\udb71\uddd7\udbe8\udc80s\udbd6\udf0d\udb02\udf9b=\uda94\udc4f": true,
+          "|\u00b6\u00a0o": [
+            []
+          ],
+          "\udaf1\udc1a": {
+            "n\u0015B": true,
+            "U\u00e0\u0011\u0095": [
+              -253726254161063.0,
+              false,
+              -7958192
+            ],
+            "\u009a\u00cf\ud9de\udcaa\u00a0\u00c5\u3227": {}
+          },
+          "\u00b8": "\u00e1\u00bca\ud805\udc18@\u00e2\u008e\udb16\udd13\u0094\u00ef\udb21\uddb0\ud85f\udd6e3]<\udb8c\udc5d",
+          "kind": "exam",
+          "priority": "Low",
+          "title": "\u00ed\u0001\ud8cd\udee6\ud8f2\ude5b",
+          "course": "Artificial Intelligence",
+          "due_date": "2026-11-30"
+        }
+      },
+      "media_type": "application/json",
+      "parent_index": null,
+      "auth_identity": null,
+      "operation": "POST /tasks"
+    },
+    {
+      "method": "PUT",
+      "url": "http://127.0.0.1:8000/tasks/67/toggle",
+      "url_template": "http://127.0.0.1:8000/tasks/{task_id}/toggle",
+      "headers": {
+        "User-Agent": "schemathesis/4.34.2",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "X-Schemathesis-TestCaseId": "ZfUDaT",
+        "Content-Length": "0"
+      },
+      "response": {
+        "status_code": 200,
+        "headers": {
+          "date": "Wed, 25 Nov 2026 17:43:06 GMT",
+          "server": "uvicorn",
+          "content-length": "143",
+          "content-type": "application/json",
+          "vary": "Origin"
+        },
+        "body": "{\"id\":67,\"title\":\"\u00ed\\u0001\ud8cd\udee6\ud8f2\ude5b\",\"course\":\"Artificial Intelligence\",\"due_date\":\"2026-11-30\",\"priority\":\"Low\",\"completed\":true,\"kind\":\"exam\"}"
+      },
+      "link": {
+        "operationId": "POST /tasks -> [200] PutTask_0 -> PUT /tasks/{task_id}/toggle",
+        "parameters": {
+          "path.task_id": "$response.body#/id"
+        }
+      },
+      "checks": [],
+      "meta": {
+        "generation": {
+          "time": 0.00041680000140331686,
+          "mode": "positive"
+        },
+        "components": {},
+        "phase": {
+          "name": "stateful",
+          "data": {
+            "type": "StatefulPhaseData",
+            "description": "Positive test case",
+            "location": null,
+            "parameter": null,
+            "parameter_location": null,
+            "mutations": []
+          }
+        },
+        "pool_draws": [],
+        "pool_misses": [],
+        "semantic_draws": [],
+        "dictionary_draws": [],
+        "constants_draws": [],
+        "raw_containers": {}
+      },
+      "path": "/tasks/{task_id}/toggle",
+      "path_parameters": {
+        "task_id": 67
+      },
+      "query": {},
+      "case_headers": {},
+      "cookies": {},
+      "case_body": {
+        "encoding": "none"
+      },
+      "media_type": null,
+      "parent_index": 0,
+      "auth_identity": null,
+      "operation": "PUT /tasks/{task_id}/toggle"
+    },
+    {
+      "method": "DELETE",
+      "url": "http://127.0.0.1:8000/tasks/67",
+      "url_template": "http://127.0.0.1:8000/tasks/{task_id}",
+      "headers": {
+        "User-Agent": "schemathesis/4.34.2",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "X-Schemathesis-TestCaseId": "S2oVdn",
+        "Content-Length": "0"
+      },
+      "response": {
+        "status_code": 200,
+        "headers": {
+          "date": "Wed, 25 Nov 2026 17:43:06 GMT",
+          "server": "uvicorn",
+          "content-length": "26",
+          "content-type": "application/json",
+          "vary": "Origin"
+        },
+        "body": "{\"message\":\"Task deleted\"}"
+      },
+      "link": {
+        "operationId": "POST /tasks -> [200] DeleteTask -> DELETE /tasks/{task_id}",
+        "parameters": {
+          "path.task_id": "$response.body#/id"
+        }
+      },
+      "checks": [],
+      "meta": {
+        "generation": {
+          "time": 0.0006792000203859061,
+          "mode": "positive"
+        },
+        "components": {},
+        "phase": {
+          "name": "stateful",
+          "data": {
+            "type": "StatefulPhaseData",
+            "description": "Positive test case",
+            "location": null,
+            "parameter": null,
+            "parameter_location": null,
+            "mutations": []
+          }
+        },
+        "pool_draws": [],
+        "pool_misses": [],
+        "semantic_draws": [],
+        "dictionary_draws": [],
+        "constants_draws": [],
+        "raw_containers": {}
+      },
+      "path": "/tasks/{task_id}",
+      "path_parameters": {
+        "task_id": 67
+      },
+      "query": {},
+      "case_headers": {},
+      "cookies": {},
+      "case_body": {
+        "encoding": "none"
+      },
+      "media_type": null,
+      "parent_index": 0,
+      "auth_identity": null,
+      "operation": "DELETE /tasks/{task_id}"
+    },
+    {
+      "method": "PUT",
+      "url": "http://127.0.0.1:8000/tasks/14571513",
+      "url_template": "http://127.0.0.1:8000/tasks/{task_id}",
+      "headers": {
+        "User-Agent": "schemathesis/4.34.2",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "X-Schemathesis-TestCaseId": "EAsGor",
+        "Content-Type": "application/json",
+        "Content-Length": "254"
+      },
+      "response": {
+        "status_code": 404,
+        "headers": {
+          "date": "Wed, 25 Nov 2026 17:43:06 GMT",
+          "server": "uvicorn",
+          "content-length": "27",
+          "content-type": "application/json",
+          "vary": "Origin"
+        },
+        "body": "{\"detail\":\"Task not found\"}"
+      },
+      "link": {
+        "operationId": "PUT /tasks/{task_id}/toggle -> [200] PutTask -> PUT /tasks/{task_id}",
+        "parameters": {
+          "path.task_id": "$response.body#/id"
+        }
+      },
+      "checks": [
+        {
+          "name": "status_code_conformance",
+          "status": "failure",
+          "message": "Undocumented status code\n\nReceived: 404\nDocumented: 200, 422"
+        }
+      ],
+      "meta": {
+        "generation": {
+          "time": 0.006029400014085695,
+          "mode": "positive"
+        },
+        "components": {
+          "PATH": "positive",
+          "BODY": "positive"
+        },
+        "phase": {
+          "name": "stateful",
+          "data": {
+            "type": "StatefulPhaseData",
+            "description": "Positive test case",
+            "location": null,
+            "parameter": null,
+            "parameter_location": null,
+            "mutations": []
+          }
+        },
+        "pool_draws": [],
+        "pool_misses": [],
+        "semantic_draws": [
+          {
+            "path": [
+              "course"
+            ],
+            "type_token": "string",
+            "format_token": null,
+            "pattern_hash": null,
+            "normalized_name": "course",
+            "value": "Database Systems",
+            "source_operation": "GET /tasks"
+          },
+          {
+            "path": [
+              "due_date"
+            ],
+            "type_token": "string",
+            "format_token": null,
+            "pattern_hash": null,
+            "normalized_name": "duedate",
+            "value": "2026-12-08",
+            "source_operation": "GET /tasks"
+          }
+        ],
+        "dictionary_draws": [],
+        "constants_draws": [],
+        "raw_containers": {}
+      },
+      "path": "/tasks/{task_id}",
+      "path_parameters": {
+        "task_id": 14571513
+      },
+      "query": {},
+      "case_headers": {},
+      "cookies": {},
+      "case_body": {
+        "encoding": "json",
+        "value": {
+          "course": "Database Systems",
+          "due_date": "2026-12-08",
+          "title": "\ud839\ude68\ud8d5\uddd3\ud833\ude52\u969ck\u00aa\u468c\ud82a\udf56\u00e5\u0017\b\u0096\u000fu\u00ba\uda53\udf13\udba4\udedd\u00aa",
+          "completed": false,
+          "kind": "study",
+          "priority": null
+        }
+      },
+      "media_type": "application/json",
+      "parent_index": 1,
+      "auth_identity": null,
+      "operation": "PUT /tasks/{task_id}"
+    }
+  ],
+  "aliases": []
+}

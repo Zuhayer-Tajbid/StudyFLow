@@ -1,0 +1,87 @@
+{
+  "operation": "PUT /tasks/{task_id}/toggle",
+  "method": "PUT",
+  "path_template": "/tasks/{task_id}/toggle",
+  "fingerprint": "7fd1a3ee",
+  "case_id": "HUri2F",
+  "code_sample": "curl -X PUT http://127.0.0.1:8000/tasks/9223372036854775808/toggle",
+  "sequence": [
+    {
+      "method": "PUT",
+      "url": "http://127.0.0.1:8000/tasks/9223372036854775808/toggle",
+      "url_template": "http://127.0.0.1:8000/tasks/{task_id}/toggle",
+      "headers": {
+        "User-Agent": "schemathesis/4.34.2",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "X-Schemathesis-TestCaseId": "HUri2F",
+        "Content-Length": "0"
+      },
+      "response": {
+        "status_code": 404,
+        "headers": {
+          "date": "Wed, 25 Nov 2026 17:42:54 GMT",
+          "server": "uvicorn",
+          "content-length": "27",
+          "content-type": "application/json",
+          "vary": "Origin"
+        },
+        "body": "{\"detail\":\"Task not found\"}"
+      },
+      "link": null,
+      "checks": [
+        {
+          "name": "status_code_conformance",
+          "status": "failure",
+          "message": "Undocumented status code\n\nReceived: 404\nDocumented: 200, 422"
+        }
+      ],
+      "meta": {
+        "generation": {
+          "time": 2.340000355616212e-05,
+          "mode": "positive"
+        },
+        "components": {
+          "PATH": "positive"
+        },
+        "phase": {
+          "name": "coverage",
+          "data": {
+            "type": "CoveragePhaseData",
+            "description": "Number beyond common integer widths",
+            "location": null,
+            "parameter": "task_id",
+            "parameter_location": "PATH",
+            "scenario": "large_number"
+          }
+        },
+        "pool_draws": [],
+        "pool_misses": [],
+        "semantic_draws": [],
+        "dictionary_draws": [],
+        "constants_draws": [],
+        "raw_containers": {
+          "PATH": {
+            "task_id": 9223372036854775808
+          }
+        }
+      },
+      "path": "/tasks/{task_id}/toggle",
+      "path_parameters": {
+        "task_id": "9223372036854775808"
+      },
+      "query": {},
+      "case_headers": {},
+      "cookies": {},
+      "case_body": {
+        "encoding": "none"
+      },
+      "media_type": null,
+      "parent_index": null,
+      "auth_identity": null,
+      "operation": "PUT /tasks/{task_id}/toggle"
+    }
+  ],
+  "aliases": []
+}

@@ -1,0 +1,90 @@
+{
+  "operation": "POST /tasks",
+  "method": "OPTIONS",
+  "path_template": "/tasks",
+  "fingerprint": "f9d88588",
+  "case_id": "yjBNAG",
+  "code_sample": "curl -X OPTIONS -H 'Content-Type: application/json' -d '{\"title\": \"0\", \"course\": \"General\", \"due_date\": \"\", \"priority\": \"Medium\", \"kind\": \"assignment\"}' http://127.0.0.1:8000/tasks",
+  "sequence": [
+    {
+      "method": "OPTIONS",
+      "url": "http://127.0.0.1:8000/tasks",
+      "url_template": "http://127.0.0.1:8000/tasks",
+      "headers": {
+        "User-Agent": "schemathesis/4.34.2",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "X-Schemathesis-TestCaseId": "yjBNAG",
+        "Content-Type": "application/json",
+        "Content-Length": "95"
+      },
+      "response": {
+        "status_code": 405,
+        "headers": {
+          "date": "Wed, 25 Nov 2026 17:42:54 GMT",
+          "server": "uvicorn",
+          "allow": "GET",
+          "content-length": "31",
+          "content-type": "application/json",
+          "vary": "Origin"
+        },
+        "body": "{\"detail\":\"Method Not Allowed\"}"
+      },
+      "link": null,
+      "checks": [
+        {
+          "name": "allow_header_conformance",
+          "status": "failure",
+          "message": "Allow header mismatch\n\n`Allow: GET` does not match the schema. Missing documented methods: POST\n\nList exactly the methods this resource supports in `Allow`"
+        }
+      ],
+      "meta": {
+        "generation": {
+          "time": 2.500019036233425e-06,
+          "mode": "negative"
+        },
+        "components": {
+          "BODY": "positive"
+        },
+        "phase": {
+          "name": "coverage",
+          "data": {
+            "type": "CoveragePhaseData",
+            "description": "Unspecified HTTP method: OPTIONS",
+            "location": null,
+            "parameter": null,
+            "parameter_location": null,
+            "scenario": "unspecified_http_method"
+          }
+        },
+        "pool_draws": [],
+        "pool_misses": [],
+        "semantic_draws": [],
+        "dictionary_draws": [],
+        "constants_draws": [],
+        "raw_containers": {}
+      },
+      "path": "/tasks",
+      "path_parameters": {},
+      "query": {},
+      "case_headers": {},
+      "cookies": {},
+      "case_body": {
+        "encoding": "json",
+        "value": {
+          "title": "0",
+          "course": "General",
+          "due_date": "",
+          "priority": "Medium",
+          "kind": "assignment"
+        }
+      },
+      "media_type": "application/json",
+      "parent_index": null,
+      "auth_identity": null,
+      "operation": "POST /tasks"
+    }
+  ],
+  "aliases": []
+}
