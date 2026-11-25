@@ -94,6 +94,19 @@ class _PlannerHomeState extends State<PlannerHome> {
   }
   Future<void> remove(String path) async { await http.delete(Uri.parse('$api$path')); await refresh(); }
   Future<void> toggle(int id) async { await http.put(Uri.parse('$api/tasks/$id/toggle')); await refresh(); }
+  Future<void> updateTask(int id, Map<String, dynamic> data) async {
+  final response = await http.put(
+    Uri.parse('$api/tasks/$id'),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode(data),
+  );
+
+  if (response.statusCode >= 200 && response.statusCode < 300) {
+    await refresh();
+  } else {
+    throw Exception('Failed to update task: ${response.body}');
+  }
+}
 
   // ───────────── Dialogs ─────────────
 
@@ -117,6 +130,107 @@ class _PlannerHomeState extends State<PlannerHome> {
     )));
     if (ok == true && title.text.trim().isNotEmpty) await post('/tasks', {'title':title.text.trim(),'course':course.text,'due_date':due.text,'priority':priority,'kind':kind});
   }
+
+  void editTask(Map task) async {
+    final title = TextEditingController(text: '${task['title'] ?? ''}');
+    final course = TextEditingController(text: '${task['course'] ?? ''}');
+    final due = TextEditingController(text: '${task['due_date'] ?? ''}');
+
+    String priority = '${task['priority'] ?? 'Medium'}';
+    String kind = '${task['kind'] ?? 'assignment'}';
+
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, update) => AlertDialog(
+          title: Text('Edit task', style: heading(20)),
+          content: SizedBox(
+            width: 420,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: title,
+                    decoration: const InputDecoration(labelText: 'Task title'),
+                  ),
+                  const SizedBox(height: 12),
+                  TextField(
+                    controller: course,
+                    decoration: const InputDecoration(labelText: 'Course'),
+                  ),
+                  const SizedBox(height: 12),
+                  TextField(
+                    controller: due,
+                    decoration: const InputDecoration(
+                      labelText: 'Due date (YYYY-MM-DD)',
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  DropdownButtonFormField<String>(
+                    value: priority,
+                    decoration: const InputDecoration(labelText: 'Priority'),
+                    items: ['Low', 'Medium', 'High']
+                        .map((x) => DropdownMenuItem(
+                              value: x,
+                              child: Text(x),
+                            ))
+                        .toList(),
+                    onChanged: (x) => update(() => priority = x ?? 'Medium'),
+                  ),
+                  const SizedBox(height: 12),
+                  DropdownButtonFormField<String>(
+                    value: kind,
+                    decoration: const InputDecoration(labelText: 'Task type'),
+                    items: ['assignment', 'study', 'exam']
+                        .map((x) => DropdownMenuItem(
+                              value: x,
+                              child: Text(x),
+                            ))
+                        .toList(),
+                    onChanged: (x) =>
+                        update(() => kind = x ?? 'assignment'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Save Changes'),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    if (ok == true && title.text.trim().isNotEmpty) {
+      try {
+        await updateTask(task['id'] as int, {
+          'title': title.text.trim(),
+          'course': course.text.trim(),
+          'due_date': due.text.trim(),
+          'priority': priority,
+          'kind': kind,
+        });
+      } catch (e) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not update task: $e')),
+        );
+      }
+    }
+
+    title.dispose();
+    course.dispose();
+    due.dispose();
+  }
+
 
   void addCourse() async {
     final name = TextEditingController();
@@ -349,8 +463,23 @@ class _PlannerHomeState extends State<PlannerHome> {
                     _chip(Icons.event_outlined, t['due_date'].isEmpty ? 'Not set' : '${t['due_date']}', kTeal),
                   ]),
                 ),
-                trailing: IconButton(icon: const Icon(Icons.delete_outline), color: kMuted, onPressed: () => remove('/tasks/${t['id']}')),
-              ),
+trailing: Row(
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    IconButton(
+      icon: const Icon(Icons.edit_outlined),
+      color: kPrimary,
+      tooltip: 'Edit task',
+      onPressed: () => editTask(t),
+    ),
+    IconButton(
+      icon: const Icon(Icons.delete_outline),
+      color: kMuted,
+      tooltip: 'Delete task',
+      onPressed: () => remove('/tasks/${t['id']}'),
+    ),
+  ],
+),              ),
             )),
           ])),
         ),
