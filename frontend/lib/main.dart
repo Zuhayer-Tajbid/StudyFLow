@@ -24,6 +24,12 @@ const kWhite = Color(0xFFFFFFFF);
 const kSoftGreen = Color(0xFFD1FAE5);
 
 
+// Additional design tokens - Branch A
+const kIndigo = Color(0xFF6366F1);
+const kLightViolet = Color(0xFFEDE9FE);
+const kSoftBlue = Color(0xFFDBEAFE);
+
+
 TextStyle heading(double size, {Color color = kInk}) =>
     GoogleFonts.poppins(fontSize: size, fontWeight: FontWeight.w600, color: color);
 
