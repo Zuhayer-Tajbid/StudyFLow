@@ -88,11 +88,29 @@ class _PlannerHomeState extends State<PlannerHome> {
     if (mounted) setState(() => busy = false);
   }
 
-  Future<void> post(String path, Map data) async {
-    await http.post(Uri.parse('$api$path'), headers: {'Content-Type':'application/json'}, body: jsonEncode(data));
+Future<void> post(String path, Map data) async {
+  final response = await http.post(
+    Uri.parse('$api$path'),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode(data),
+  );
+
+  if (response.statusCode >= 200 && response.statusCode < 300) {
     await refresh();
+  } else {
+    throw Exception('Request failed: ${response.body}');
   }
-  Future<void> remove(String path) async { await http.delete(Uri.parse('$api$path')); await refresh(); }
+}
+
+Future<void> remove(String path) async {
+  final response = await http.delete(Uri.parse('$api$path'));
+
+  if (response.statusCode >= 200 && response.statusCode < 300) {
+    await refresh();
+  } else {
+    throw Exception('Delete failed: ${response.body}');
+  }
+}
   Future<void> toggle(int id) async { await http.put(Uri.parse('$api/tasks/$id/toggle')); await refresh(); }
   Future<void> updateTask(int id, Map<String, dynamic> data) async {
   final response = await http.put(
