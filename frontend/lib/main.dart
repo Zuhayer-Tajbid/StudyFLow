@@ -18,6 +18,12 @@ const kAmber = Color(0xFFF59E0B);
 const kRose = Color(0xFFEF4444);
 const kTeal = Color(0xFF0EA5E9);
 
+// Additional design tokens - Branch B
+const kDarkBg = Color(0xFF1F2937);
+const kWhite = Color(0xFFFFFFFF);
+const kSoftGreen = Color(0xFFD1FAE5);
+
+
 // Additional design tokens - Branch A
 const kIndigo = Color(0xFF6366F1);
 const kLightViolet = Color(0xFFEDE9FE);
